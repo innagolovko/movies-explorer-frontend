@@ -1,0 +1,151 @@
+.account {
+    top: 0;
+    width: 1280px;
+    height: 74px;
+    background-color: #073042;
+    justify-content: space-between;
+    margin-bottom: 64px;
+}
+
+.account__nav {
+    display: flex;
+    height: 74px;
+    padding: 0 70px 0 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.account__logo {
+    width: 38px;
+    height: 38px;
+    margin: 0;   
+}
+
+.account__container {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    list-style: none;
+    margin-left: auto;
+}
+
+.account__container-auth {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 427px;
+}
+
+.account__grid {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.account__link {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.account__link:hover {
+    opacity: 0.7;
+}
+
+.account__profile {
+    width: 100px;
+    height: 32px;
+    border-radius: 50px;
+    background-color: rgba(43, 224, 128, 1);
+}
+
+.account__button {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 12px;
+    height: 32px;
+    justify-content: space-between;
+    padding: 0 3px 7px 11px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+.account__b-open-menu-black {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+    }
+
+.account__button:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 767px) {
+    .account {
+        width: 320px;
+    }
+
+    .account__nav {
+        width: 292px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 14px 0 14px;
+    }
+
+    .account__container-auth {
+        width: 268px;
+    }
+
+    .account__container-auth {
+       display: none;
+    } 
+
+    .account__profile {
+        display: none;
+    }
+
+    .account__b-open-menu-black {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1279px) {
+    .account {
+        width: 768px;
+        padding: 0;
+    }
+
+     .account__container-auth {
+        margin: 0;
+    }
+
+    .account__nav { 
+        padding: 0 30px 0 30px;
+    }
+
+    .account__logo {
+        margin: 0;
+        padding: 0;   
+    }
+
+    .account__b-open-menu-black {
+        display: flex;
+    }
+
+    .account__profile {
+        display: none;
+    }
+
+    .account__link {
+        display: none;
+    }
+}
