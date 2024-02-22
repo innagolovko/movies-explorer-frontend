@@ -4,6 +4,7 @@
     height: 74px;
     background-color: #073042;
     justify-content: space-between;
+    margin: auto;
     margin-bottom: 64px;
 }
 
@@ -47,8 +48,7 @@
     align-items: center;
     font-size: 13px;
     font-weight: 400;
-    line-height: 16px;
-    justify-content: center;
+    line-height: 18px;
     text-decoration: none;
     color: #fff;
 }
@@ -72,18 +72,19 @@
     line-height: 12px;
     height: 32px;
     justify-content: space-between;
-    padding: 0 3px 7px 11px;
+    padding: 0 3px 0 11px;
     text-decoration: none;
     color: rgba(0, 0, 0, 1);
 }
 
 .account__b-open-menu-black {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border: none;
-        background: transparent;
-    }
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
 
 .account__button:hover {
     opacity: 0.7;
@@ -121,7 +122,7 @@
 @media screen and (min-width: 767px) and (max-width: 1279px) {
     .account {
         width: 768px;
-        padding: 0;
+       
     }
 
      .account__container-auth {

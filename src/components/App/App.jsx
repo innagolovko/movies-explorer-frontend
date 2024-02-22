@@ -18,10 +18,11 @@ function App() {
       <div className="page">
         <div className='page__content'>
           <Routes>
-            <Route path='*' element={<Navigate to='/' replase />} />
+            <Route path='*' component={NotFound} />
             <Route path='/'
               element={
                 <>
+                  <Navigate to='/' replaсe />
                   <Account name='account' />
                   <Header name='promo' />
                   <Main />

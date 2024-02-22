@@ -14,6 +14,7 @@ function NotFound() {
                 className='notfound__button'
                 onClick={() => navigate(-1)}
             >
+                Назад
             </button>
         </section>
     )

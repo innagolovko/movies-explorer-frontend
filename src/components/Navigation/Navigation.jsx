@@ -84,10 +84,6 @@ function Navigation({name}) {
                                 >
                                     Аккаунт {' '}
                                 <div className='navigation__profile-icon-circle'></div>
-                                  {/*  <img className='navigation__profile-icon navigation__profile-icon_promo'
-                                        alt='иконка профиля'
-                                        src={iconAccount}
-                                    ></img> */}
                             </Link>
                         </div>
                     </div>
@@ -144,12 +140,8 @@ function Navigation({name}) {
                                         to='/profile'
                                         className='navigation__button' 
                                         >
-                                            Аккаунт {' '}
+                                          {/*  Аккаунт {' '} */}
                                         <div className='navigation__profile-icon-circle'></div>
-                                        {/* <img className='navigation__profile-icon navigation__profile-icon_promo'
-                                            alt='иконка профиля'
-                                            src={iconAccount}
-                                        ></img> */}
                                         </Link>
                                     </li>
                                 </ul>
@@ -184,12 +176,8 @@ function Navigation({name}) {
                                 to='/profile'
                                 className='navigation__button navigation__button-profile'
                                 >
-                                    Аккаунт {' '}
+                                Аккаунт {' '}
                                     <div className='navigation__profile-icon-circle'></div>
-                                    {/* <img className='navigation__profile-icon navigation__profile-icon_promo'
-                                        alt='иконка профиля'
-                                        src={iconAccount}
-                                    ></img> */}
                             </Link>
                         </div> 
                     </div>
@@ -246,7 +234,7 @@ function Navigation({name}) {
                                             to='/profile'
                                             className='navigation__button' 
                                             >
-                                                Аккаунт {' '}
+                                             { /*  Аккаунт {' '} */}
                                                 <div className='navigation__menu-account'>
                                                     <img src={account} alt='account' />
                                                 </div>

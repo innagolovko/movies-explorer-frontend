@@ -2,7 +2,6 @@ import React from 'react';
 import './AboutMe.css';
 import { Link } from "react-router-dom";
 import aboutMePhoto from '../../../images/mePhoto.jpg';
-//import arrow from '../../../images/arrow.svg';
 
 function AboutMe() {
     return (
@@ -14,9 +13,11 @@ function AboutMe() {
                             <h3 className='about-me__name-title'>Инна</h3>
                             <p className='about-me__name-subtitle'>дизайнер, препресс-инженер, веб-разработчик</p>
                             <p className='about-me__info-text'>
-                                Я из Краснодарского края. Работаю дизайнером полиграфической продукции. 
-                                В 'ЯндексПрактикум' решила пройти курс обучения 'Веб-разработчик'. 
-                                Планирую дальше развиваться в этой области.
+                                Я из Краснодарского края. Работаю дизайнером полиграфической продукции, верстаю статьи, 
+                                подготавливаю в печать. 
+                                Решила пройти курс обучения 'Веб-разработчик' в 'ЯндексПрактикум'. 
+                                Выбрала для себя это направление, потому что есть возможность работать удалённо.
+                                Планирую и дальше развиваться в этой области. 
                             </p>
                                 <Link to='https://github.com/innagolovko'
                                     className='about-me__link'

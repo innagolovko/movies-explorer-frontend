@@ -5,7 +5,9 @@ function Promo() {
     return (
         <section className='promo'>
             <div>
-                <h1 className='promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
+                <h1 className='promo__title'>Учебный проект студента факультета</h1>
+                    <p className='promo__title-veb'>Веб-разработки.</p>
+                
                 <p className='promo__subtitle'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
                 {/*<button 
                     type='button' 

@@ -1,6 +1,7 @@
 .search {
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -67,7 +68,7 @@
 
 @media screen and (min-width: 767px) and (max-width: 1279px) {
     .search__form {
-       /* width: 708px; */
+        width: 708px; 
         margin: 98px 30px 60px 30px;
     }
 }
