@@ -1,63 +1,77 @@
 import { Link } from 'react-router-dom';
 import './Profile.css';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import CurrentUserContext from '../../context/CurrentUserContext';
+import { EmailRegex } from '../../utils/constants';
+import useFormValidation from '../../utils/useFormValidation';
+import Form from '../Form/Form.jsx';
+import Input from '../Input/Input';
 
-function Profile(userName) {
+function Profile({ name, logOut, editUserData, setIsError, isSuccess, setSuccess }) {
+    
+    const { values, errors, isInputValid, isValid, handleChange, reset } = useFormValidation();
+    const currentUser = useContext(CurrentUserContext);
+    const [isEdit, setIsEdit] = useState(false); 
 
-    const disabled = false;
-    const [isVisibleSubmit, setIsVisibleSubmit] = useState(false);
+    useEffect(() => {
+        reset({ username: currentUser.name, email: currentUser.email })
+    }, [reset, currentUser, isEdit])
 
-    function makeButtonVisible() {
-        setIsVisibleSubmit(true);
+    function onSubmit(event) {
+        event.preventDefault()
+        editUserData(values.username, values.email)
     }
+    
+    
+    return(   
+        <section className='profile page__profile'>
+                <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
+            <Form 
+                name={name}
+                isValid={isValid}
+                onSubmit={onSubmit}
+                setIsError={setIsError}
+                values={values}
+                isSuccess={isSuccess}
+                setSuccess={setSuccess}
+                setIsEdit={setIsEdit}
+                // readOnly={!isEdit}
+                isEdit={isEdit}
+            >
+            <Input
+                selectname={name}
+                name='username'
+                type='text'
+                title='Имя'
+                minLength='3'
+                value={values.username}
+                isInputValid={isInputValid.username}
+                error={errors.username}
+                onChange={handleChange}
+                // readOnly={!isEdit}
+                isEdit={isEdit}
+            /> 
+            
+            <Input
+                selectname={name}
+                name='email'
+                type='email'
+                title='E-mail'
+                value={values.email}
+                isInputValid={isInputValid.email}
+                error={errors.email}
+                onChange={handleChange}
+                pattern={EmailRegex}
+                // readOnly={!isEdit}
+                isEdit={isEdit}
+            />   
+            </Form>
 
-    function makeButtonInvisible() {
-        setIsVisibleSubmit(false);
-    }
-
-    return(
-        
-        <section className='profile'>
-        <h1 className='profile__title'>Привет, Виталий</h1>
-                <div className='profile__container'>
-                    <div className='profile__container-info'>
-                        <span className='profile__info-text'>Имя</span>
-                            <input
-                                className='profile__info-text'
-                                type='text'
-                                placeholder='Инна'
-                                minLength='2'
-                                maxLength='40'
-                            />
-                    </div>
-                        <div className='profile__container-info'>
-                            <span className='profile__info-text'>E-mail</span>
-                                <input
-                                    className='profile__info-text'
-                                    type='text'
-                                    placeholder='iaminnochka@gmail.com'
-                                    minLength='2'
-                                    maxLength='40'
-                                />
-                        </div>
-                </div>
-
-                {isVisibleSubmit ? (
-                    <button type='submit' className={`${!disabled ? 'profile__button-safe' : 'profile__button-safe_disabled'}`} onClick={makeButtonInvisible}>
-                        Сохранить
-                    </button>
-                ) : (
-                    <>
-                    <button type='submit' className='profile__button-edit' onClick={makeButtonVisible}>
-                        Редактировать
-                    </button> 
-                        <Link to='/signin' className='profile__link-exit'>
-                            Выйти из аккаунта
-                        </Link>
-                    </>
-                )}
+            <Link to='/' onClick={logOut} className='profile__link-exit'>
+                Выйти из аккаунта
+            </Link>
         </section>
     );
 }
 
-export default Profile
+export default Profile;

@@ -13,9 +13,6 @@
 .navtab__button {
     width: 129px;
     height: 36px;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
     border-radius: 3px;
     margin: 0 0 25px 70px;
     background: transparent;
@@ -24,10 +21,20 @@
     cursor: pointer;
 }
 
-.navtab__button-links {
+.navtab__button:hover {
+    opacity: 0.6;
+}
+
+ .navtab__button-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
     text-decoration: none;
     color: #fff;
-}
+} 
 
 .navtab__links {
     display: flex;

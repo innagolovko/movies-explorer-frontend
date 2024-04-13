@@ -17,7 +17,7 @@ function NotFound() {
                 Назад
             </button>
         </section>
-    )
+    );
 }
 
-export default NotFound
+export default NotFound;

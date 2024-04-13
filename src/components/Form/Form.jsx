@@ -1,65 +1,107 @@
-import React from 'react';
+import { useEffect } from 'react';
 import './Form.css';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import CurrentUserContext from '../../context/CurrentUserContext.js';
+import ErrorContext from '../../context/ErrorContext.js';
+import SendContext from '../../context/SendContext.js';
+// import Preloader from '../Preloader/Preloader.jsx';
 
 function Form({ 
-    name, 
-    nameButton, 
+    name,  
     onSubmit, 
     children, 
-    // isValid = true, 
+    isValid,
+    setIsError,
+    values,
+    isEdit,
+    setIsEdit,
+    isSuccess,
+    setSuccess
 }) {
-    const disabled = false;
+    
+    const { pathname } = useLocation();
+    const currentUser = useContext(CurrentUserContext);
+    const isError = useContext(ErrorContext);
+    const isSend = useContext(SendContext);
 
-    return(
-        <>
-            <form className='auth__form'
-                name={`auth-form-${name}`}
-                noValidate
-                onSubmit={onSubmit}
-            >
-                <fieldset className='auth__contact-info'>
-                    {children}
-                    {!disabled ? (
+   useEffect(() => {
+    setIsError(false)
+    }, [setIsError])
+
+    useEffect(() => {
+        if (pathname === '/profile') {
+            setSuccess(false)
+            setIsEdit(false)
+        }
+    }, [setSuccess, setIsEdit, pathname])
+
+    const renderContent = () => {
+        if (name === 'signup') {
+                return (
+                    <>
+                        <span className={`login__error-request login__error-request_type_reg ${isError && 'login__error-request_active'}`}>{isError && 'При регистрации произошла ошибка.'}</span> 
+                            <button
+                                type='submit'
+                                className={`login__button-request ${isValid && !isError ? '' : 'login__button-request_disabled'}`}
+                                disabled={!isValid || isSend || isError}
+                            >
+                               { /* {isSend ? name='button' : 'Зарегистрироваться'}  */} 
+                               Зарегистрироваться
+                            </button>
+                    </>) 
+                }
+
+           if (name === 'signin') {
+                return (
+                    <>
+                        <span className={`login__error-request ${isError && 'login__error-request_active'}`}>{isError && 'При входе произошла ошибка.'}</span>
                         <button 
                             type='submit'
-                            // disable='true'
-                            // disabled={disabled ? 'true' : ''}
-                            className={`${
-                                name === 'signup' ? 'auth__button-safe' : 'auth__button-safe-login'
-                            }`}
+                            className={`login__button-submit ${isValid && !isError ? '' : 'login__button-submit_disabled'}`}
+                            disabled={!isValid || isSend || isError}
                         >
-                            {nameButton}
+                            {isSend ? name='button' : 'Войти'} 
                         </button>
-                    ) : (
+                    </> )
+            }
+        
+            if (isEdit) {
+                return (
+                    <>
+                        <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_active'}`}>{isError && 'Ошибка при редактировании'}</span>
                         <button
                             type='submit'
-                            // disable='true'
-                            // disabled={disabled ? 'true' : ''}
-                            className={`${
-                                name === 'signup' ? 'auth__button-submit-disabled' : 'auth__button-submit-disabled-login'
-                            }`}
+                            className={`profile__button-safe ${(values.username === currentUser.name && values.email === currentUser.email) || isValid ? '' : 'profile__button-safe_disabled'}`}
+                            disabled={!isValid || isSend || isError}
                         >
-                            {nameButton}
-                        </button>
-                    )}
+                           {isSend ?  name='button' : 'Сохранить'} 
+                        </button> 
+                    </>
+                ) 
+            }
 
-                    {name === 'signup' && (
-                        <Link to='/signin' className='auth__link-transition'>
-                            Уже зарегистрированы?{' '}
-                            <p className='auth__link-transition-text'>Войти</p>
-                        </Link>
-                    )}
-                    {name === 'signin' && (
-                        <Link to='/signup' className='auth__link-transition'>
-                            Ещё не зарегистрированы?
-                            <p className='auth__link-transition-text'>Регистрация</p>
-                        </Link>
-                    )}
-                </fieldset>
-            </form>
-        </>
+                return (
+                    <>
+                        <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_active'}`}>{isSuccess && 'Успешно!'}</span>
+                        <button 
+                            type='button'
+                            className={'profile__button-edit'}
+                            onClick={() => {
+                                setIsEdit(true)
+                                setSuccess(false)
+                            }}
+                            >{'Редактировать'}</button>
+                    </>  
+                )
+    }
+
+ return (
+        <form noValidate name={name} onSubmit={onSubmit}>     
+            {children}
+            {renderContent()} 
+        </form>
     );
-}
+}; 
 
-export default Form
+export default Form;

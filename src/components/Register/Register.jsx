@@ -1,57 +1,65 @@
-import './Register.css';
-import Form from '../Form/Form.jsx';
 import Auth from '../Auth/Auth.jsx';
+import useFormValidation from '../../utils/useFormValidation.js';
+import { EmailRegex } from '../../utils/constants.js';
+import Input from '../Input/Input.jsx';
 
-function Register({name}) {
+function Register({ name, onRegister, setIsError }) {
+    const { values, errors, isInputValid, isValid, handleChange } = useFormValidation();
 
-    return(
-        <Auth name='signup'>
-            <Form 
-                name={name}
-                title='Регистрация'
-                nameButton='Зарегистрироваться'
-            >
-                <span className='auth__input-me'>Имя</span>
-                <input
-                    type='text'
-                    name={name}
-                    id='nameUser'
-                    className='auth__input'
-                    placeholder='Имя'
-                    required=''
-                    minLength='2'
-                    maxLength='30'
-                />
+    function onSubmit(event) {
+        event.preventDefault()
+        onRegister(values.username, values.email, values.password)
+    }
 
-                <span className='auth__input-error auth__input-error-noactive' disabled>Что-то пошло не так...</span>
-                <span className='auth__input-me'>Email</span>
-                <input
-                    type='text'
-                    name='email'
-                    id='email'
-                    className='auth__input'
-                    placeholder='Email'
-                    required=''
-                    minLength='2'
-                    maxLength='30'
-                />
-
-                <span className='auth__input-error auth__input-error-noactive' disabled>Что-то пошло не так...</span>
-                <span className='auth__input-me'>Пароль</span>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    className='auth__input'
-                    placeholder='Пароль'
-                    required=''
-                    minLength={2}
-                    maxLength={30}
-                />
-                <span className='auth__input-error auth__input-error-noactive' disabled>Что-то пошло не так...</span>
-            </Form>
+    return(       
+        <Auth name={name} isValid={isValid} onSubmit={onSubmit} setIsError={setIsError}>
+            <Input
+                type='text'
+                name='username'
+                title='Имя'
+                required=''
+                minLength='2'
+                maxLength='30'
+                value={values.username}
+                isInputValid={isInputValid.username}
+                error={errors.username}
+                onChange={(event) => {
+                    handleChange(event)
+                    setIsError(false)   // сбрасываем ошибку
+                }}
+                placeholder='Введите ваше имя'
+            />
+            <Input
+                type='email'
+                name='email'
+                title='E-mail'
+                value={values.email}
+                isInputValid={isInputValid.email}
+                error={errors.email}
+                onChange={(event) => {
+                    handleChange(event)
+                    setIsError(false)
+                }}
+                placeholder='Введите вашу электронную почту'
+                pattern={EmailRegex}
+            />
+            <Input
+                type='password'
+                name='password'
+                title='Пароль'
+                minLength='2'
+                maxLength='30'
+                value={values.password}
+                isInputValid={isInputValid.password}
+                error={errors.password}
+                onChange={(event) => {
+                    handleChange(event)
+                    setIsError(false)
+                }}
+                placeholder='Введите ваш пароль'
+            />
         </Auth>
     );
 }
 
-export default Register
+export default Register;

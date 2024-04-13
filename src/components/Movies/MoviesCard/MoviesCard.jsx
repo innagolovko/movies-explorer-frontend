@@ -1,13 +1,60 @@
 import './MoviesCard.css';
-import picture1 from '../../../images/pic__COLOR_pic.jpg';
-import DeleteButton from '../Button/DeleteButton/DeleteButton.jsx';
-import LikeButton from '../Button/LikeButton/LikeButton.jsx';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function MoviesCard({ name }) {
+function MoviesCard({ onDelete, addMovie, data, savedMovies }) {
+    const { pathname } = useLocation();
+    const [click, setClick] = useState(false);
+
+    useEffect(() => {
+        if (pathname === '/movies')
+        setClick(savedMovies.some(element => data.id === element.movieId))
+    }, [savedMovies, data.id, setClick, pathname])
+
+    function onClick() {
+        if (savedMovies.some(element => data.id === element.movieId)) {
+            setClick(true)
+            addMovie(data)
+        } else {
+            setClick(false)
+            addMovie(data)
+        }
+    }
+
+    function convertTime(duration) {
+        const minutes = duration % 60;
+        const hours = Math.floor(duration / 60);
+        return (hours === 0 ? `${minutes}м` : minutes === 0 ? `${hours}ч` : `${hours}ч${minutes}м`)
+    }
 
     return(
-        <li className='movies-card'>
-            <img className='movies-card__picture' alt='постер фильма' src={picture1} />
+        <li className='movies__card'>
+            <article>
+                <Link to={data.trailerLimk} target='_blank'>
+                    <img src={pathname === '/movies' ? `https://api.nomoreparties.co${data.image.url}` : data.image} className='movies__pic' alt={data.name} />
+                </Link>
+                <div className='movies__card-info'>
+                    <div className='movies__card-text'>
+                        <p className='movies__subtitle'>{data.nameRU}</p>  
+                    </div>
+                        {pathname === '/movies' ?
+                            <button type='button' className={`movies__save ${click ? 'movies__save_active' : ''}`} onClick={onClick}></button>
+                            :
+                            <button type='button' className={`movies__save movies__save_type_delete`} onClick={() => onDelete(data._id)}></button>
+                        }      
+                </div>
+                <p className='movies__duration'>{convertTime(data.duration)}</p>
+            </article>  
+        </li>
+    );
+}
+
+export default MoviesCard;
+
+
+/* <li className='movies-card'>
+            <img className='movies-card__picture' alt='picture1' src={picture1} />
             <div className='movies-card__info'>
                 <div className='movies-card__info-box'>
                     <h2 className='movies-card__title'>33 слова о дизайне</h2>  
@@ -15,8 +62,4 @@ function MoviesCard({ name }) {
                 {name === 'movies' ? (<LikeButton></LikeButton>) : (<DeleteButton></DeleteButton>)}
             </div>
             <p className='movies-card__time'>1ч42м</p>  
-        </li>
-    );
-}
-
-export default MoviesCard;
+        </li> */

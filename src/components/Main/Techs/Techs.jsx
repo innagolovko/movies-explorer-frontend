@@ -23,4 +23,4 @@ function Techs() {
     );
 }
 
-export default Techs
+export default Techs;

@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content:space-between;
-    width: 100%;
     min-height: 397px;
     margin: 0 auto;
     background-color: rgba(7, 48, 66, 1);
@@ -17,7 +16,6 @@
 }
 
 .promo__title {
-    position: relative;
     font-size: 50px;
     font-weight: 400;
     line-height: 58px;
@@ -28,21 +26,12 @@
     margin: 75px 0 0 70px;
 }
 
-.promo__title-veb {
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 58px;
-    text-align: left;
-    margin: 0 0 36px 70px;
-    color: #ffffff;
-}
-
 .promo__subtitle {
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
     width: 310px;
-    margin: 0 0 146px 70px;
+    margin: 36px 0 146px 70px;
     text-align: left;
     color: rgba(255, 255, 255, .5);
 }
@@ -50,8 +39,7 @@
 @media screen and (max-width: 767px) {
     .promo {
         width: 320px; 
-        flex-direction: column-reverse;
-        
+        flex-direction: column-reverse;  
     }
 
       .promo__logo {
@@ -70,14 +58,7 @@
         margin: 0 auto;
     }
 
-    .promo__title-veb {
-        font-size: 30px;
-        line-height: 38px;
-        text-align: center;
-        margin: 0;
-    }
-
-     .promo__subtitle {
+    .promo__subtitle {
         margin-top: 24px;
         width: 255px;
         min-height: 32px;
@@ -108,15 +89,6 @@
         margin: 0 auto;
     }
 
-    .promo__title-veb {
-        display: none;
-        position: absolute;
-        font-size: 40px;
-        line-height: 50px;
-        text-align: center;
-        margin: 0;
-    }
-
     .promo__subtitle {
         width: 255px;
         margin: 22px 254px 92px;
@@ -124,5 +96,4 @@
         margin: 0 auto;
         padding: 22px 0 92px 0;  
     }
-
 }
