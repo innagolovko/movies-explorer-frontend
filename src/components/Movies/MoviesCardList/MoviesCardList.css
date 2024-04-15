@@ -44,6 +44,10 @@
     cursor: pointer;
 }
 
+.movies__button-more:hover {
+    opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
     .movies {
         width: 300px;

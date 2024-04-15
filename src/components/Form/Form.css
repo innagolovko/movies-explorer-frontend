@@ -18,6 +18,10 @@
     cursor: pointer;
 } 
 
+.login__button-request:hover {
+    opacity: 0.8;
+}
+
 .login__button-request_disabled {
     display: block;
     width: 396px;
@@ -56,6 +60,11 @@
     background: rgba(52, 86, 243, 1);
     cursor: pointer;
 } 
+
+.login__button-submit:hover {
+    opacity: 0.8;
+}
+
 
 .login__button-submit_disabled {
     display: block;

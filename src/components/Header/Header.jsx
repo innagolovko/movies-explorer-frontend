@@ -98,7 +98,8 @@ function Header({ name, loggedIn }) {
                                         </Link>
                                     </li>
                                     <li className='header__menubox-line'>
-                                        <Link to='/profile' onClick={clickLink}>
+                                        <Link to='/profile' className='header__menubox-text'
+                                        onClick={clickLink}>
                                             <div className='header__link_type_account'>
                                                  Аккаунт
                                                 <div className='header__profile-icon-circle'></div>
