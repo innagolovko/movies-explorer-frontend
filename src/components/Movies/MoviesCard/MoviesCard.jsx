@@ -51,15 +51,3 @@ function MoviesCard({ onDelete, addMovie, data, savedMovies }) {
 }
 
 export default MoviesCard;
-
-
-/* <li className='movies-card'>
-            <img className='movies-card__picture' alt='picture1' src={picture1} />
-            <div className='movies-card__info'>
-                <div className='movies-card__info-box'>
-                    <h2 className='movies-card__title'>33 слова о дизайне</h2>  
-                </div>
-                {name === 'movies' ? (<LikeButton></LikeButton>) : (<DeleteButton></DeleteButton>)}
-            </div>
-            <p className='movies-card__time'>1ч42м</p>  
-        </li> */

@@ -1,6 +1,5 @@
 import React from 'react';
 import './NavTab.css';
-// import { HashLink } from 'react-router-hash-link';
 
 function NavTab() {
 

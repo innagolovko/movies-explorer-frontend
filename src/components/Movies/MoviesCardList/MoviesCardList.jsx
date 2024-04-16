@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.jsx';
 import Preloader from '../../Preloader/Preloader.jsx';
-// import LoadButton from '../Button/LoadButton/LoadButton.jsx';
 import {useLocation} from 'react-router-dom';
 import {
     MaxScreen,
