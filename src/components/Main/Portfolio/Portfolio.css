@@ -1,0 +1,126 @@
+.portfolio {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.portfolio__container {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+    box-sizing: border-box;
+    padding: 100px 70px 106px 70px;
+}
+
+.portfolio__title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 0 50px 0;
+    color: rgba(160, 160, 160, 1);
+}
+
+.portfolio__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.portfolio__list-item {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    letter-spacing: -0.04em;
+    padding: 0;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+}
+
+.portfolio__list-item:last-child {
+    border: none;
+}
+
+.portfolio__link {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    margin: 0;
+    padding-right: 50px;
+    padding-bottom: 19px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.portfolio__link:hover {
+    opacity: 0.7;
+}
+
+ .portfolio__link::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    /* transform: translate(-50%); */
+    background-image: url('../../../images/arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 18px;
+} 
+
+@media screen and (max-width: 767px) {
+
+    .portfolio__container {
+        width: 320px;
+        padding: 0 14px 51px 14px;
+    }
+
+    .portfolio__title {
+        font-size: 14px;
+        line-height: 20px;
+        padding-bottom: 40px;
+    }
+
+    .portfolio__link {
+        width: 270px;
+        font-size: 18px;
+        line-height: 28px;
+        padding-right: 40px;
+    } 
+
+     .portfolio__list-item_without-underscore {
+        padding-bottom: 0;
+    } 
+    
+    .portfolio__link::after {
+        width: 11px;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1279px) {
+    .portfolio {
+        width: 768px; 
+        padding: 90px 0 71px 0;
+        margin: auto;
+        
+    } 
+
+    .portfolio__container {
+        padding: 0 50px 0 50px;
+    } 
+
+    .portfolio__link {
+        font-size: 28px;
+    } 
+}
