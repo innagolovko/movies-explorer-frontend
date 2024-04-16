@@ -369,6 +369,10 @@
         display: none;
     }
 
+    /*.header__container {
+        margin-right: 30px;
+    } */
+
     .header__nav {
         width: 768px;
         margin: 0;
