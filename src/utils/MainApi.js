@@ -76,8 +76,6 @@ class MainApi {
             })
         })
     }
-
-
  
     addMovie(data, token) {
             return this._request('/movies',{
