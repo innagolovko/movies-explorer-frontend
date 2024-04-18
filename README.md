@@ -32,4 +32,6 @@ frontend: https://my-movies.nomoredomainsmonster.ru
 backend: https://api.my-movies.nomoredomainsmonster.ru
 Публичный IP-адрес: 51.250.21.114
 
+Ссылка на пул реквест: https://github.com/innagolovko/movies-explorer-frontend/pull/2
+
 Адрес репозитория: https://github.com/innagolovko/movies-explorer-frontend
