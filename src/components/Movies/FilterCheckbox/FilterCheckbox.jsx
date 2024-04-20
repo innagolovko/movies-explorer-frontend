@@ -14,4 +14,4 @@ function FilterCheckbox({ isCheck, changeShort, firstEntrance }) {
     );
 }
 
-export default FilterCheckbox
+export default FilterCheckbox;

@@ -23,6 +23,7 @@ function Form({
     const currentUser = useContext(CurrentUserContext);
     const isError = useContext(ErrorContext);
     const isSend = useContext(SendContext);
+  //  const onUpdate = pathname === '/profile' ? true : false;
 
    useEffect(() => {
     setIsError(false)
@@ -35,6 +36,10 @@ function Form({
         }
     }, [setSuccess, setIsEdit, pathname])
 
+  /*  useEffect(() => {
+        onUpdate ? setSuccess(true) : setSuccess(false)
+    }, [setSuccess, onUpdate]); */
+
     const renderContent = () => {
         if (name === 'signup') {
                 return (
@@ -45,8 +50,7 @@ function Form({
                                 className={`login__button-request ${isValid && !isError ? '' : 'login__button-request_disabled'}`}
                                 disabled={!isValid || isSend || isError}
                             >
-                               { /* {isSend ? name='button' : 'Зарегистрироваться'}  */} 
-                               Зарегистрироваться
+                                {isSend ? 'Зарегистрироваться...' : 'Зарегистрироваться'}  
                             </button>
                     </>) 
                 }
@@ -54,45 +58,47 @@ function Form({
            if (name === 'signin') {
                 return (
                     <>
-                        <span className={`login__error-request ${isError && 'login__error-request_active'}`}>{isError && 'При входе произошла ошибка.'}</span>
+                        <span className={`login__error-request ${isError && 'login__error-request_active'}`}>
+                            {isError && 'При входе произошла ошибка.'}</span>
                         <button 
                             type='submit'
                             className={`login__button-submit ${isValid && !isError ? '' : 'login__button-submit_disabled'}`}
                             disabled={!isValid || isSend || isError}
                         >
-                            Войти 
+                            {isSend ? 'Войти...' : 'Войти'} 
                         </button>
                     </> )
             }
         
-            if (isEdit) {
-                return (
-                    <>
-                        <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_active'}`}>{isError && 'Ошибка при редактировании'}</span>
-                        <button
-                            type='submit'
-                            className={`profile__button-safe ${(values.username === currentUser.name && values.email === currentUser.email) || isValid ? '' : 'profile__button-safe_disabled'}`}
-                            disabled={!isValid || isSend || isError}
-                        >
-                           Сохранить
-                        </button> 
-                    </>
-                ) 
-            }
-
-                return (
-                    <>
-                        <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_active'}`}>{isSuccess && 'Успешно!'}</span>
-                        <button 
-                            type='button'
-                            className={'profile__button-edit'}
-                            onClick={() => {
-                                setIsEdit(true)
-                                setSuccess(false)
-                            }}
-                            >{'Редактировать'}</button>
-                    </>  
-                )
+    if (!isEdit && name === 'profile') {
+            return (
+                <>
+                  { /* <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_type_success'}`}>  
+                        {isError ? 'При редактировании произошла ошибка.' : isSuccess && 'Успешно!'}
+                    </span> */}
+                    <button type='button' className={'profile__button-edit'}
+                        onClick={() => {
+                            setIsEdit(true)
+                           // setSuccess(false)
+                        }}>{'Редактировать'}
+                    </button>
+                </>  
+            );
+        } else {
+            return (
+                <>
+                    <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_type_success'}`}>
+                        {isError ? 'При редактировании произошла ошибка.' : isSuccess && 'Успешно!'}
+                    </span>
+                    <button type='submit' className={`profile__button-safe ${(
+                            values.username === currentUser.name && values.email === currentUser.email) 
+                            || isValid ? '' : 'profile__button-safe_disabled'}`}
+                        disabled={!isValid || isSend || isError}
+                    >{isSend ? 'Сохранить...' : 'Сохранить'} 
+                    </button> 
+                </>          
+            );
+        }
     }
 
  return (
@@ -104,3 +110,10 @@ function Form({
 }; 
 
 export default Form;
+
+
+//<span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_active'}`}>{isError && 'Ошибка при редактировании'}</span>
+// {isSend ? <Preloader name='button' /> : 'Сохранить'} 
+ /* <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_type_success'}`}>
+                            {isError ? 'При редактировании произошла ошибка.' : isSuccess && 'Успешно!'}
+                        </span> */

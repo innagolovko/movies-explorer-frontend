@@ -22,7 +22,6 @@ function Profile({ name, logOut, editUserData, setIsError, isSuccess, setSuccess
         editUserData(values.username, values.email)
     }
     
-    
     return(   
         <section className='profile page__profile'>
                 <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
@@ -35,7 +34,6 @@ function Profile({ name, logOut, editUserData, setIsError, isSuccess, setSuccess
                 isSuccess={isSuccess}
                 setSuccess={setSuccess}
                 setIsEdit={setIsEdit}
-                // readOnly={!isEdit}
                 isEdit={isEdit}
             >
             <Input
@@ -48,7 +46,6 @@ function Profile({ name, logOut, editUserData, setIsError, isSuccess, setSuccess
                 isInputValid={isInputValid.username}
                 error={errors.username}
                 onChange={handleChange}
-                // readOnly={!isEdit}
                 isEdit={isEdit}
             /> 
             
@@ -62,7 +59,6 @@ function Profile({ name, logOut, editUserData, setIsError, isSuccess, setSuccess
                 error={errors.email}
                 onChange={handleChange}
                 pattern={EmailRegex}
-                // readOnly={!isEdit}
                 isEdit={isEdit}
             />   
             </Form>

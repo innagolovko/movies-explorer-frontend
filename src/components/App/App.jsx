@@ -23,7 +23,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);      // сохранённые фильмы
     const [isCheckToken, setIsCheckToken] = useState(true);  // проверка токена при входе
-    const [isEdit, setIsEdit] = useState(false);             // редактирование профиля
+    const [isEdit, setIsEdit] = useState(true);             // редактирование профиля
     const [isSuccess, setIsSuccess] = useState(false);       // успешное редактирование профиля
 
     // const location = useLocation();
@@ -32,7 +32,7 @@ function App() {
     const footerView = ['/', '/movies', '/saved-movies'].includes(pathname);
 
     const setSuccess = useCallback(() => {
-        setIsSuccess(false)
+        setIsSuccess(true)
     }, [])
 
     function handleDeleteMovie(deletemovieId) {
@@ -136,6 +136,7 @@ function App() {
                     setCurrentUser(userData)
                     setLoggedIn(true)
                     setIsCheckToken(false)
+                    // localStorage.clear()
                 })
                 .catch((error) => console.error(`Ошибка при загрузке начальных данных ${error}`))
             setIsCheckToken(false)

@@ -8,7 +8,8 @@ const InitMediumScreen = 8
 const InitSmallScreen = 5
 const StepMaxScreen = 4
 const StepMediumScreen = 3
-const StepSmallScreen =2
+const StepSmallScreen = 2
+const Duration = 40
     export {
         EmailRegex, 
         MaxScreen,
@@ -20,5 +21,6 @@ const StepSmallScreen =2
         InitSmallScreen,
         StepMaxScreen,
         StepMediumScreen,
-        StepSmallScreen
+        StepSmallScreen,
+        Duration
     }

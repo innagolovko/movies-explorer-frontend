@@ -113,7 +113,7 @@ class MainApi {
 // Создаём экземпляр класса Api
 const apiMain = new MainApi ({
     // baseUrl: 'http://localhost:3000',
-    baseUrl: 'https://api.my-movies.nomoredomainsmonster.ru',
+     baseUrl: 'https://api.my-movies.nomoredomainsmonster.ru',
 });
 
 export default apiMain;

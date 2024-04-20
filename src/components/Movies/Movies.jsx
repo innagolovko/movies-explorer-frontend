@@ -3,6 +3,7 @@ import apiMovies from '../../utils/MoviesApi.js';
 import {useCallback, useEffect, useState} from 'react';
 import SearchForm from './SearchForm/SearchForm.jsx';
 import MoviesCardList from './MoviesCardList/MoviesCardList.jsx';
+import { Duration } from '../../utils/constants.js';
 
 function Movies({setIsError, addMovie, savedMovies}) {
     const [allMovies, setAllMovies] = useState([])                // все фильмы с сервера
@@ -20,11 +21,11 @@ function Movies({setIsError, addMovie, savedMovies}) {
         localStorage.setItem('allmovies', JSON.stringify(movies))
         setSearchedMovie(search)
         // отфильтрованные фильмы по value input
-        setFilteredMovies(movies.filter((movie) => {
+        setFilteredMovies(movies ? movies.filter((movie) => {
             // проходим по каждому фильму/на русском/нижний регистр/с включением нижнего регистра
             const searchName = movie.nameRU.toLowerCase().includes(search.toLowerCase())
-            return isCheck ? (searchName && movie.duration <= 40) : searchName
-        }))
+            return isCheck ? (searchName && movie.duration <= Duration) : searchName
+        }) : [])
     }, [])
 
     // поиск фильма
@@ -50,18 +51,20 @@ function Movies({setIsError, addMovie, savedMovies}) {
     }
 
     useEffect(() => {
-        if (localStorage.allMovies && localStorage.shorts && localStorage.movie) {
-            // достаём из localStorage
-            const movies = JSON.parse(localStorage.allMovies)
-            const search = JSON.parse(localStorage.movie)
-            const isCheck = JSON.parse(localStorage.shorts)
+       // if (localStorage.allMovies && localStorage.shorts && localStorage.movie) {    
+            // достаём из localStorage 
+            console.log(localStorage.getItem('allmovies'))
+            const movies = JSON.parse(localStorage.getItem('allmovies'))
+            console.log(movies)
+            const search = JSON.parse(localStorage.getItem('movie')) 
+            const isCheck = JSON.parse(localStorage.getItem('shorts'))
             setServerError(false)
             setFirstEntranse(false)
             setSearchedMovie(search)
             setIsCheck(isCheck)
-            setAllMovies(movies)
+            setAllMovies(movies ? movies : []) 
             filter(search, isCheck, movies)
-        }
+      //  }
     }, [filter])
 
     // клик по чекбоксу
@@ -87,7 +90,7 @@ function Movies({setIsError, addMovie, savedMovies}) {
                 firstEntranse={firstEntranse}
             />
             <MoviesCardList // name='movies'
-                movies={filteredMovies}         // отфильтрованные фильмы
+            movies={filteredMovies}             // отфильтрованные фильмы
                 addMovie={addMovie}
                 savedMovies={savedMovies}
                 isLoading={isLoading}
@@ -99,3 +102,5 @@ function Movies({setIsError, addMovie, savedMovies}) {
 };
 
 export default Movies;
+
+
