@@ -1,5 +1,5 @@
-import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
-import {useState, useCallback, useEffect} from 'react';
+import {Navigate, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import './App.css';
 import Header from '../Header/Header.jsx';
 import Main from '../Main/Main.jsx';
@@ -26,14 +26,13 @@ function App() {
     const [isEdit, setIsEdit] = useState(true);             // редактирование профиля
     const [isSuccess, setIsSuccess] = useState(false);       // успешное редактирование профиля
 
-    // const location = useLocation();
     const {pathname} = useLocation();
     // const headerView = ['/', '/movies', '/saved-movies', '/profile'].includes(pathname);
     const footerView = ['/', '/movies', '/saved-movies'].includes(pathname);
 
-    const setSuccess = useCallback(() => {
+   /* const setSuccess = useCallback(() => {
         setIsSuccess(true)
-    }, [])
+    }, []) */
 
     function handleDeleteMovie(deletemovieId) {
         apiMain.deleteMovie(deletemovieId, localStorage.jwt)
@@ -114,12 +113,14 @@ function App() {
     }
 
     function editUserData(username, email) {
+        setIsSuccess(false)
         setIsSend(true)
         apiMain.setUserInfo(username, email, localStorage.jwt)
             .then(res => {
-                console.log(res)
+               // console.log(res)
                 setCurrentUser(res)
                 setIsEdit(false)
+                setIsSuccess(true)
             })
             .catch((error) => {
                 setIsError(true)
@@ -162,7 +163,7 @@ function App() {
                                                 path='/signin'
                                                 element={
                                                     loggedIn
-                                                        ? <useNavigate to='/movies' replaсe/>
+                                                        ? <Navigate to='/' replaсe/>
                                                         :
                                                         <Main name='signin' onLogin={handleLogin} setIsError={setIsError}/>
                                                 }
@@ -172,7 +173,7 @@ function App() {
                                                 path='/signup'
                                                 element={
                                                     loggedIn
-                                                        ? <useNavigate to='/movies' replaсe/>
+                                                        ? <Navigate to='/' replaсe/>
                                                         : <Main name='signup' onRegister={handleRegister}
                                                                 setIsError={setIsError}/>
                                                 }
@@ -191,7 +192,7 @@ function App() {
                                                             editUserData={editUserData}
                                                             setIsError={setIsError}
                                                             isSuccess={isSuccess}
-                                                            setSuccess={setSuccess}
+                                                            setSuccess={setIsSuccess}
                                                             setIsEdit={setIsEdit}
                                                             isEdit={isEdit}
                                                         />

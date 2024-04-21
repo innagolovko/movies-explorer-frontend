@@ -102,5 +102,3 @@ function Movies({setIsError, addMovie, savedMovies}) {
 };
 
 export default Movies;
-
-
