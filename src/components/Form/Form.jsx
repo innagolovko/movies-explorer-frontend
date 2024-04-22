@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Form.css';
 // import { useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import CurrentUserContext from '../../context/CurrentUserContext.js';
 import ErrorContext from '../../context/ErrorContext.js';
 import SendContext from '../../context/SendContext.js';
+
 
 function Form({ 
     name,  
@@ -23,6 +24,12 @@ function Form({
     const currentUser = useContext(CurrentUserContext);
     const isError = useContext(ErrorContext);
     const isSend = useContext(SendContext);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const setInVisible = () => {
+        // Действия при клике на кнопку
+        setIsVisible(false);
+    };
     
    useEffect(() => {
     setIsError(false)
@@ -65,35 +72,39 @@ function Form({
                 </> )
             }
     
-        if (!isEdit && name === 'profile') {
+        if (isEdit && name === 'profile') {
             return (
-                <>  
-                    <button type='button' className={'profile__button-edit'}
-                        onClick={() => {
-                           setIsError(false);
+                <>
+                    <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_type_success'}`}>
+                        {isError ? 'Успешно!' : isSuccess && 'Успешно!'}
+                    </span>
+
+                    <button type='submit' 
+                        className={`profile__button-safe ${(
+                            values.username === currentUser.name && values.email === currentUser.email) 
+                            || !isValid || isError ? 'profile__button-safe_disabled' : ''}`}
+                        disabled={!isValid || isSend || isError}
+                        onClick={setInVisible}
+                        style={{ display: isVisible ? 'block' : 'none' }}
+                        >{isSend ? 'Сохранить...' : 'Сохранить'} 
+                    </button> 
+                </>
+            );
+            } else {
+                return (
+                    <> 
+                    <button type='button' className={'profile__button-edit' } 
+                        onClick={() => { 
+                            setIsError(false);
                             setIsEdit(true);
-                           setSuccess(false);
-                        }}>
+                            setSuccess(false);
+                            setIsVisible(true); 
+                        }}
+                        style={{ display: isSuccess || isError ? 'block' : isVisible }}>
                         {'Редактировать'}
                     </button>
                 </>
-                );
-            } else {
-                return (
-                    <>
-                        <span className={`profile__error ${isError ? 'profile__error_type_error' : isSuccess && 'profile__error_type_success'}`}>
-                            {isError ? 'Успешно!' : isSuccess && 'Успешно!'}
-                        </span>
- 
-                        <button type='submit' 
-                            className={`profile__button-safe ${(
-                                values.username === currentUser.name && values.email === currentUser.email) 
-                                || isValid ? '' : 'profile__button-safe_disabled'}`}
-                            disabled={!isValid || isSend || isError}
-                        >
-                            {isSend ? 'Сохранить...' : 'Сохранить'}
-                        </button> 
-                    </>
+
                 );
             }
         };
@@ -107,3 +118,13 @@ function Form({
     }; 
 
 export default Form;
+
+
+                       /* <button type='submit' 
+                            className={`profile__button-safe ${(
+                                values.username === currentUser.name && values.email === currentUser.email) 
+                                || isValid ? '' : 'profile__button-safe_disabled'}`}
+                            disabled={!isValid || isSend || isError}
+                        >
+                            {isSend ? 'Сохранить...' : 'Сохранить'}
+                        </button> */

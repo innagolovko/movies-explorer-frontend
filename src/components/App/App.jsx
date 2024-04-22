@@ -25,7 +25,7 @@ function App() {
     const [isCheckToken, setIsCheckToken] = useState(true);  // проверка токена при входе
     const [isEdit, setIsEdit] = useState(true);             // редактирование профиля
     const [isSuccess, setIsSuccess] = useState(false);       // успешное редактирование профиля
-
+   
     const {pathname} = useLocation();
     // const headerView = ['/', '/movies', '/saved-movies', '/profile'].includes(pathname);
     const footerView = ['/', '/movies', '/saved-movies'].includes(pathname);
@@ -33,7 +33,7 @@ function App() {
    /* const setSuccess = useCallback(() => {
         setIsSuccess(true)
     }, []) */
-
+    
     function handleDeleteMovie(deletemovieId) {
         apiMain.deleteMovie(deletemovieId, localStorage.jwt)
             .then(() => {
@@ -195,6 +195,7 @@ function App() {
                                                             setSuccess={setIsSuccess}
                                                             setIsEdit={setIsEdit}
                                                             isEdit={isEdit}
+                                                            savedMovies={savedMovies}
                                                         />
                                                     </>
                                                 }

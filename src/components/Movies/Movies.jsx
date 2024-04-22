@@ -19,6 +19,7 @@ function Movies({setIsError, addMovie, savedMovies}) {
         localStorage.setItem('movie', JSON.stringify(search))
         localStorage.setItem('shorts', JSON.stringify(isCheck))
         localStorage.setItem('allmovies', JSON.stringify(movies))
+        // строка поиска фильмов
         setSearchedMovie(search)
         // отфильтрованные фильмы по value input
         setFilteredMovies(movies ? movies.filter((movie) => {
