@@ -28,18 +28,18 @@ export default function useFormValidation() {
        setIsValid(form.checkValidity()) 
     }
 
+    const setValue = useCallback((name, value) => {
+        setValues((oldValues) => {
+            return { ...oldValues, [name]: value }
+        })
+    }, [])
+    
     const reset = useCallback((data = {}) => {
         setValues(data)
         setErrors({})
         setIsValid(false)
         setIsInputValid({})
     }, [])
-
-    const setValue = useCallback((name, value) => {
-        setValues((oldValues) => {
-            return { ...oldValues, [name]: value }
-        })
-    }, []) 
 
     return { 
         values, 

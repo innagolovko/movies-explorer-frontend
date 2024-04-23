@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-
 import Logo from '../../images/logo.svg';
 import AccountImg from '../../images/account.svg';
 import AccountGreenImg from '../../images/account-green.svg';
@@ -31,9 +30,9 @@ function Header({ name, loggedIn }) {
     }, [isOpenMenu])
 
     return (
-        <header className={`page__header ${name === 'promo' ? 'page__header page__header_color_dark_unique' : 'page__header_color_white'}`}>
+        <header className={`page__header ${name === 'promo' ? 'page__header_color_dark' : 'page__header_color_white'}`}>
             {loggedIn ? (
-                <div className='header__container header__container_type_page'> 
+                <div className='header__container'> 
                     <nav className='page__header header__nav'> 
                         <Link to='/'>
                             <img className='header__logo' alt='логотип проекта' src={Logo}></img>
@@ -140,7 +139,3 @@ function Header({ name, loggedIn }) {
 
 export default Header;
 
-
-/* <header className={`${pathname === '/'}` ? 'page__header' : 'page__header_type_page' ? `${pathname === '/movies'}` : ''}> */
-
-/* <header className={`header page__header ${name !== 'promo' ? 'page__header_type_page' : ''}`}> */

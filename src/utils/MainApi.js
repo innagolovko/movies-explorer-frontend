@@ -76,8 +76,6 @@ class MainApi {
             })
         })
     }
-
-
  
     addMovie(data, token) {
             return this._request('/movies',{
@@ -114,7 +112,8 @@ class MainApi {
 
 // Создаём экземпляр класса Api
 const apiMain = new MainApi ({
-    baseUrl: 'http://localhost:3000',
+     //  baseUrl: 'http://localhost:3000',
+      baseUrl: 'https://api.my-movies.nomoredomainsmonster.ru',
 });
 
 export default apiMain;

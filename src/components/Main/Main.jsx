@@ -12,8 +12,6 @@ import Movies from '../Movies/Movies.jsx';
 import NavTab from './NavTab/NavTab.jsx';
 import NotFound from "../NotFound/NotFound";
 
-// import Auth from '../Auth/Auth.jsx';
-
 
 function Main({
                   name,

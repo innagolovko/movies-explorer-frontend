@@ -5,16 +5,7 @@ import useFormValidation from '../../../utils/useFormValidation.js';
 import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function SearchForm({ 
-    isCheck, 
-    changeShort, 
-    searchedMovie, 
-    searchMovies, 
-    setIsError, 
-    firstEntrance, 
-    savedMovies,
- }) {
-
+function SearchForm({ isCheck, changeShort, searchedMovie, searchMovies, setIsError, firstEntrance, savedMovies }) {
     const { pathname } = useLocation();
     const isError = useContext(ErrorContext);
     const { values, handleChange, reset } = useFormValidation();

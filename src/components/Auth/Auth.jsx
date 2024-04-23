@@ -2,8 +2,6 @@ import Logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import './Auth.css';
 import Form from '../Form/Form.jsx';
-
-
 function Auth({ name, children, isValid, onSubmit, setIsError }) {
 
     return(

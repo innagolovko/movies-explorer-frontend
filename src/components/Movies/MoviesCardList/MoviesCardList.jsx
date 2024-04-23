@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.jsx';
 import Preloader from '../../Preloader/Preloader.jsx';
-// import LoadButton from '../Button/LoadButton/LoadButton.jsx';
 import {useLocation} from 'react-router-dom';
 import {
     MaxScreen,
@@ -114,13 +113,13 @@ function MoviesCardList({movies, onDelete, addMovie, isLoading, savedMovies, ser
 
         if (!firstEntrance) {
             return (
-                <span className='movies__list-error'>"Ничего не найдено."</span>
+                <span className='movies__list-error'>"Чтобы увидеть список фильмов выполните поиск."</span>
             )
         }
 
         if (pathname === "/movies") {
             return (
-                <span className='movies__list-error'>"Чтобы увидеть список фильмов выполните поиск."</span>
+                <span className='movies__list-error'>"Ничего не найдено."</span>
             )
         }
 
@@ -131,20 +130,30 @@ function MoviesCardList({movies, onDelete, addMovie, isLoading, savedMovies, ser
         <section className='movies page__movies' aria-label='Галерея'>
             {renderList()}
 
-            {pathname === '/movies' && (
-                <button
-                    type='button'
-                    className={`movies__button-more ${count >= movies.length && 'movies__button-more_hidden'}`}
-                    onClick={clickMore}
-                >
-                    Ещё
-                </button>
-            )}
-        </section>
-    );
-}
+             {pathname === '/movies' && movies.length > 0 && (
+                count < movies.length && (
+                    <button
+                        type='button'
+                        className={`movies__more ${count >= movies.length ? 'movies__more_hidden' : ''}`}
+                        onClick={clickMore}
+                    >
+                        Ещё
+                    </button> 
+            ) 
+        )}
+      </section>
+      );
+    }
 
 export default MoviesCardList
 
 
 /* {name === 'movies' ? (<LoadButton />) : (<LoadButton name={name} disabled={true} />)} */
+
+/*<button
+                    type='button'
+                    className={`movies__more ${count >= movies.length && 'movies__more_hidden'}`}
+                    onClick={clickMore}
+                >
+                    Ещё
+                </button> */

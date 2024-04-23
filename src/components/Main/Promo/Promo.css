@@ -72,7 +72,6 @@
         width: 768px;
         flex-direction: column-reverse;
         margin: 0 auto;
-        /* min-height: 672px; */
     }
 
     .promo__logo {
